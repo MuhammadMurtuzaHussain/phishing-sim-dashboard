@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en-IE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Phishing simulation dashboard</title>
+<meta name="description" content="Click and report rates by nudge type and department from synthetic phishing simulation data, with a short behavioural reading of the results.">
+<script>document.documentElement.classList.add('js')</script>
+<style>@@CSS@@</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <span class="brand">Phishing simulation analytics</span>
+    <button type="button" id="theme" class="plain" aria-pressed="false">Dark mode</button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="h-title">
+      <h1 id="h-title">Clicking and reporting are different behaviours, and the best nudge for one is not the best for the other.</h1>
+      <p class="lede">@@LEDE@@</p>
+      <p class="meta">@@PROVENANCE@@</p>
+    </section>
+
+    <section class="section" aria-labelledby="h-nudges">
+      <h2 id="h-nudges">How each nudge changed clicks and reports</h2>
+      <p class="how">Each point is a nudge, measured against the emails that carried no nudge. Left means fewer clicks and higher means more reports. The crosshair is a 95% interval: where it does not cross zero on an axis, that behaviour moved.</p>
+      <div class="split">
+        <figure class="fig">
+          <div class="chart" id="chart-nudge"></div>
+        </figure>
+        <aside class="side">
+          <h3>What each nudge tried</h3>
+          @@MECHANISMS@@
+        </aside>
+      </div>
+      <div class="tbl-wrap">@@NUDGE_TABLE@@</div>
+    </section>
+
+    <section class="section" aria-labelledby="h-depts">
+      <h2 id="h-depts">Which departments click, and which report</h2>
+      <p class="how">Each point is a department with all nudges pooled, and larger points have more employees. The lines mark the organisation-wide rates, so the top left holds departments that click less and report more than average. Hover or focus a point to see its 95% interval; the table lists every one.</p>
+      <div class="split">
+        <figure class="fig">
+          <div class="chart" id="chart-dept"></div>
+        </figure>
+        <div class="tbl-wrap side-table">@@DEPARTMENT_TABLE@@</div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="h-heat">
+      <h2 id="h-heat">Where a nudge worked inside a department</h2>
+      <p class="how">Each cell compares a nudge with the same department's emails that carried no nudge. Blue is better than the control (fewer clicks, more reports) and orange is worse. A dot and full colour mean the 95% interval excludes zero; faded cells could be chance.</p>
+      <figure class="fig" id="fig-heat">
+        <div class="fig-tools"><button type="button" class="plain toggle" aria-pressed="false">Show as table</button></div>
+        <div class="fig-chart"><div class="heats" id="chart-heat"></div></div>
+        <div class="fig-table">@@HEAT_TABLES@@</div>
+      </figure>
+    </section>
+
+    <section class="section" aria-labelledby="h-camp">
+      <h2 id="h-camp">How the rates moved across campaigns</h2>
+      <p class="how">All nudges pooled. The lure changes every month, so rates move with the lure as well as with learning. Nudges were dealt out within each campaign, which is why the comparisons above are not affected by the lure.</p>
+      <figure class="fig" id="fig-camp">
+        <div class="fig-tools"><button type="button" class="plain toggle" aria-pressed="false">Show as table</button></div>
+        <div class="fig-chart"><div class="chart" id="chart-campaign"></div></div>
+        <div class="fig-table">@@CAMPAIGN_TABLE@@</div>
+      </figure>
+    </section>
+
+    <section class="section cols" aria-labelledby="h-read">
+      <div class="col-head">
+        <h2 id="h-read">What the pattern suggests</h2>
+        <p class="how">A worked reading of the results above. The effects are assumptions built into synthetic data, so the point is how to read this kind of result.</p>
+      </div>
+      <div class="prose">@@READING@@</div>
+    </section>
+
+    <section class="section cols" aria-labelledby="h-notes">
+      <div class="col-head">
+        <h2 id="h-notes">Notes</h2>
+      </div>
+      <div class="prose">@@NOTES@@</div>
+    </section>
+  </main>
+</div>
+
+<script type="application/json" id="data">@@DATA@@</script>
+<script>@@JS@@</script>
+</body>
+</html>
